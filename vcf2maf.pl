@@ -15,8 +15,8 @@ use Text::Wrap;
 # Set any default paths and constants
 my ( $tumor_id, $normal_id ) = ( "TUMOR", "NORMAL" );
 my ( $vep_path, $vep_data, $vep_forks, $buffer_size, $any_allele, $inhibit_vep, $online, $vep_custom, $vep_config, $vep_overwrite, $vep_stats  ) = ( "$ENV{HOME}/miniconda3/bin", "$ENV{HOME}/.vep", 4, 5000, 0, 0, 0, "", "", 0 , 0);
-my ( $ref_fasta ) = ( "$ENV{HOME}/.vep/homo_sapiens/102_GRCh37/Homo_sapiens.GRCh37.dna.toplevel.fa.gz" );
-my ( $species, $ncbi_build, $cache_version, $maf_center, $retain_info, $retain_fmt, $retain_ann, $min_hom_vaf, $max_subpop_af ) = ( "homo_sapiens", "GRCh37", "", ".", "", "", "", 0.7, 0.0004 );
+my ( $ref_fasta ) = ( "$ENV{HOME}/.vep/homo_sapiens/111_GRCh38/Homo_sapiens.GRCh38.dna.toplevel.fa.gz" );
+my ( $species, $ncbi_build, $cache_version, $maf_center, $retain_info, $retain_fmt, $retain_ann, $min_hom_vaf, $max_subpop_af ) = ( "homo_sapiens", "GRCh38", "", ".", "", "", "", 0.7, 0.0004 );
 my $perl_bin = $Config{perlpath};
 
 # Set default formatting for any output command lines:
@@ -485,7 +485,7 @@ unless( $inhibit_vep ) {
     if( $species eq "homo_sapiens" ) {
         # Slight change in options if in offline mode, or if using the newer VEP
         $vep_cmd .= " --polyphen b" . ( $vep_script =~ m/vep$/ ? " --af" : " --gmaf" );
-        $vep_cmd .= ( $vep_script =~ m/vep$/ ? " --af_1kg --af_esp --af_gnomad" : " --maf_1kg --maf_esp" ) unless( $online );
+        $vep_cmd .= ( $vep_script =~ m/vep$/ ? " --af_1kg --af_gnomad" : " --maf_1kg --maf_esp" ) unless( $online );
     }
     # Do not use the --regulatory option in situations where we know it will break
     $vep_cmd .= " --regulatory" unless( $species eq "canis_familiaris" or $online );
@@ -1200,7 +1200,7 @@ Use useastdb.ensembl.org instead of local cache (supports only GRCh38 VCFs listi
 
 =item B<--ref-fasta>=I<FASTA>
 
-Reference FASTA file [~/.vep/homo_sapiens/102_GRCh37/Homo_sapiens.GRCh37.dna.toplevel.fa.gz]
+Reference FASTA file [~/.vep/homo_sapiens/111_GRCh38/Homo_sapiens.GRCh38.dna.toplevel.fa.gz]
 
 =item B<--species>=I<SPECIES>
 
@@ -1208,7 +1208,7 @@ Ensembl-friendly name of species (e.g. mus_musculus for mouse) [homo_sapiens]
 
 =item B<--ncbi-build>=I<ASSEMBLY>
 
-NCBI reference assembly of variants MAF (e.g. GRCm38 for mouse) [GRCh37]
+NCBI reference assembly of variants MAF (e.g. GRCm38 for mouse) [GRCh38]
 
 =item B<--cache-version>=I<N>
 
