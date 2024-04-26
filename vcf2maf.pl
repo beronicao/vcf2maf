@@ -482,7 +482,7 @@ unless( $inhibit_vep ) {
     # Add options that only work on human variants
     if( $species eq "homo_sapiens" ) {
         # Slight change in options if in offline mode, or if using the newer VEP
-        $vep_cmd .= " --polyphen b" . ( $vep_script =~ m/vep$/ ? " --af" : " --gmaf" );
+        #$vep_cmd .= " --polyphen b" . ( $vep_script =~ m/vep$/ ? " --af" : " --gmaf" );
         $vep_cmd .= ( $vep_script =~ m/vep$/ ? " --af_1kg --af_gnomad" : " --maf_1kg --maf_esp" ) unless( $online );
     }
     # Do not use the --regulatory option in situations where we know it will break
